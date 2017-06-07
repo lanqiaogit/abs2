@@ -63,7 +63,21 @@
 		where 
 			USER_ID = #{USER_ID}
 	</select>
-	
+	<!-- 通过ID获取数据 -->
+	<select id="findByEmail" parameterType="pd" resultType="pd">
+		select 
+			EMAIL,	
+			NAME,	
+			PASSWORD,	
+			CREATETIME,	
+			STATE,	
+			DATECODE,	
+			USER_ID
+		from 
+			SY_USER
+		where 
+			EMAIL = #{EMAIL}
+	</select>
 	
 	<!-- 列表 -->
 	<select id="datalistPage" parameterType="page" resultType="pd">

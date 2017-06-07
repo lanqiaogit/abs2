@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="/sitting/taglib.jsp"%>
 <%
 	String path = request.getContextPath();
@@ -21,9 +21,9 @@
 	<div class="">用户名<input type="text" id="NAME" name="NAME"></div>
 	
 	
-	<div class="">密码<input type="text" id="PASSWORD" name="PASSWORD"></div>
-	<div class="">确认密码<input type="text" id="REPASSWORD" name="REPASSWORD"></div>
-	<div class=""><button type="button" onclick="regist();">注册</button></div>
+	<div class="">密码<input type="password" id="PASSWORD" name="PASSWORD"></div>
+	<div class="">确认密码<input type="password" id="REPASSWORD" name="REPASSWORD"></div>
+	<div class=""><input type="button" onclick="regist();"value="注册"></div>
 	</div>
 	</form>
 </body>
@@ -105,12 +105,18 @@
 			dataType:'json',
 			async: false,
 			success: function(data){
-				if(data.success=="1"){
-					hintSubmit(1,"提交成功！");
-				 }else{
-					 hintSubmit(2,"提交成功！");
-					
-				 
+				if(data.success=="1"&&data.d=="0"){
+					hintSubmit(1,"注册成功！");
+					setTimeout("window.location.href='${ctx}/jsp/login.jsp';",3000);
+				 }else if(data.d=="1"){
+					 $("#EMAIL").tips({
+							side:3,
+							msg:'邮箱已被注册',
+							bg:'#87CEFF',
+							time:2
+						});
+			}else{
+					 hintSubmit(2,"注册失败");
 				 }	
 			},
 			

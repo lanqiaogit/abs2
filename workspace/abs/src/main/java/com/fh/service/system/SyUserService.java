@@ -58,7 +58,12 @@ public class SyUserService {
 	public PageData findById(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("SyUserMapper.findById", pd);
 	}
-	
+	/*
+	* 通过EMAIL获取数据
+	*/
+	public PageData findByEmail(PageData pd)throws Exception{
+		return (PageData)dao.findForObject("SyUserMapper.findByEmail", pd);
+	}
 	/*
 	* 批量删除
 	*/
